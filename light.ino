@@ -1,0 +1,6 @@
+void
+light_setup()
+{
+  
+}
+

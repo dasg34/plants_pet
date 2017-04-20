@@ -1,0 +1,6 @@
+void
+temperature_setup()
+{
+  
+}
+
