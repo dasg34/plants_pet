@@ -1,3 +1,4 @@
+#define TEMPERATURE A0
 
 static int temperature_warning_count; 
 
@@ -17,20 +18,36 @@ static int
 temperature_get()
 {
   //온도 센서로부터 받은 값을 리턴.
+  return analogRead(TEMPERATURE);
 }
 
 static int
 enough_temperature_is()
 {
   //온도 센서의 측정값이 일정수준 아래로 떨어지면 0, 아니면 1 리턴.
-  //10분 단위로 측정하며 수준 아래로 떨어지면 카운트 플러스, 일정카운트 이상 쌓이면 0.
-  //수준 이상이 되면 카운트 초기화. 방열패드 off
+  if (temperature_get() < 50)
+     return 0;
+  else 
+     return 1;
 }
 
 void
-temperature_warn()
+tempearture_check()
 {
-  //방열패드 on
+  //수준 아래로 떨어지면 카운트 플러스, 일정카운트 이상 쌓이면 0.
+  //수준 이상이 되면 카운트 초기화. 방열패드 off
+  if (enough_temperature_is() == 0)
+    temperature_warning_count++;
+  else
+  {
+    temperature_warning_count = 0;
+    heating_pad_off();
+  }
+
+  if (temperature_warning_count > 3)
+  {
+     heating_pad_on();
+  }
 }
 
 void
