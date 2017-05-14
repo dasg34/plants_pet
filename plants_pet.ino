@@ -15,5 +15,7 @@ setup()
 void 
 loop()
 {
+  light_check();
+  delay(1000);
   //이곳에 우리의 알고리즘이 들어갑니다.
 }
