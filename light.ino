@@ -57,7 +57,7 @@ led_3color_on()
     analogWrite(RED, 255);
   }
 
-  else if(light_warning_count>=3 && light_warning_count<6)
+  else if(light_warning_count>=3)
   {
     analogWrite(RED, 0);
     analogWrite(BLUE, 0);
