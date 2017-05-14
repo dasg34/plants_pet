@@ -1,16 +1,31 @@
 #define TEMPERATURE A0
-
+#define heatingPad1 5
+#define heatingPad2 6
 static int temperature_warning_count; 
 
 static void
 heating_pad_on()
 {
-  
-}
+
+       if (temperature_get() <= 30) {
+        // 열선패드에 전원을 공급합니다.
+        digitalWrite(heatingPad1,HIGH);
+        digitalWrite(heatingPad2,HIGH);
+         }
+        delay(120000);
+    }
+ 
+
 
 static void
 heating_pad_off()
 {
+  if (temperature_get() > 30){
+  
+  digitalWrite(heatingPad1,LOW);
+  digitalWrite(heatingPad2,LOW);
+}
+      
   
 }
 
@@ -53,6 +68,7 @@ tempearture_check()
 void
 temperature_setup()
 {
-  
+  pinMode(heatingPad1, OUTPUT);
+  pinMode(heatingPad2, OUTPUT);
 }
 
