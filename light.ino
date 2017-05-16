@@ -3,6 +3,9 @@
 #define GREEN 10
 #define BLUE 9
 
+
+void led_3color_on(int red, int green, int blue, int color);
+
 static int light_warning_count; 
 
 static void
@@ -47,33 +50,6 @@ light_warn()
 }
 
 void
-led_3color_on()
-{
-  //조도센서 측정값에 따라 3색led등 on, off
-  if(light_warning_count>=6)
-  {
-    analogWrite(BLUE, 0);
-    analogWrite(GREEN, 0);
-    analogWrite(RED, 255);
-  }
-
-  else if(light_warning_count>=3)
-  {
-    analogWrite(RED, 0);
-    analogWrite(BLUE, 0);
-    analogWrite(GREEN, 255);
-  }
-
-  else
-  {
-    analogWrite(RED, 0);
-    analogWrite(GREEN, 0);
-    analogWrite(BLUE, 255);
-  }
-  
-}
-
-void
 light_check()
 { 
   if(enough_light_is()==0)
@@ -92,7 +68,7 @@ light_check()
     plants_led_on();
   }
 
-  led_3color_on();
+  //led_3color_on(RED, GREEN, BLUE, RED_COLOR);
   
   //수준 아래로 떨어지면 카운트 플러스, 일정카운트 이상 쌓이면 0.
   //수준 이상이 되면 카운트 초기화. 방열패드 off
