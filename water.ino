@@ -48,6 +48,7 @@ water_check()
      moisture_warning_count = 0;
 
   if (moisture_warning_count >= 10 )
+
   {
      if ((moisture_warning_count - 10) % 6 == 0)
      { 
