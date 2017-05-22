@@ -35,6 +35,7 @@ led_3color_on(int red, int green, int blue, int color)
 void
 setup()
 {
+  Serial.begin(9600);
   face_setup();
   water_setup();
   temperature_setup();
