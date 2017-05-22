@@ -1,7 +1,8 @@
-#define LIGHT A0
+#define LIGHT A0 //조도센서
 #define L_RED 11
 #define L_GREEN 10
 #define L_BLUE 9
+#define PLANTS_LED 12
 
 
 void led_3color_on(int red, int green, int blue, int color);
@@ -11,13 +12,13 @@ static int light_warning_count;
 static void
 plants_led_on()
 {
-  
+  digitalWrite(PLANTS_LED, HIGH);
 }
 
 static void
 plants_led_off()
 {
-  
+  digitalWrite(PLANTS_LED, LOW);
 }
 
 static int
@@ -78,12 +79,13 @@ light_check()
   }
 
   //수준 아래로 떨어지면 카운트 플러스, 일정카운트 이상 쌓이면 0.
-  //수준 이상이 되면 카운트 초기화. 방열패드 off
+  //수준 이상이 되면 카운트 초기화. 식물 성장용 LED off
 }
 
 void
 light_setup()
 {
+  pinMode(PLANTS_LED, OUTPUT);
   pinMode(L_RED, OUTPUT);
   pinMode(L_GREEN, OUTPUT);
   pinMode(L_BLUE, OUTPUT);
