@@ -84,8 +84,8 @@ light_check()
 void
 light_setup()
 {
-  pinMode(RED, OUTPUT);
-  pinMode(GREEN, OUTPUT);
-  pinMode(BLUE, OUTPUT);
+  pinMode(L_RED, OUTPUT);
+  pinMode(L_GREEN, OUTPUT);
+  pinMode(L_BLUE, OUTPUT);
 }
 
