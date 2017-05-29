@@ -5,8 +5,8 @@
 
 #include <OneWire.h>
 #include <DallasTemperature.h>
-#define ONE_WIRE_BUS 2
-OneWire oneWire(ONE_WIRE_BUS);
+#define TEMPERATURE 2
+OneWire oneWire(TEMPERATURE);
 DallasTemperature sensors(&oneWire);
 
 
@@ -39,7 +39,8 @@ heating_pad_off()
 static int
 temperature_get()
 {
-  int temp=analogRead(TEMPERATURE);
+  sensors.requestTemperatures();
+int temp = sensors.getTempCByIndex(0);
   
   Serial.println(temp);
   //온도 센서로부터 받은 값을 리턴.
@@ -78,6 +79,7 @@ tempearture_check()
 void
 temperature_setup()
 {
+  sensors.begin();
   pinMode(HEATINGPAD1, OUTPUT);
   pinMode(HEATINGPAD2, OUTPUT);
 }
