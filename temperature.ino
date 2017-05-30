@@ -2,6 +2,7 @@
 #define T_RED 11
 #define T_GREEN 10
 #define T_BLUE 9
+
 #define HEATINGPAD 5
 
 
@@ -87,5 +88,6 @@ temperature_setup()
   pinMode(T_RED, OUTPUT);
   pinMode(T_GREEN, OUTPUT);
   pinMode(T_BLUE, OUTPUT);
+
 }
 
