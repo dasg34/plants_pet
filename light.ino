@@ -1,7 +1,9 @@
-#define LIGHT A0
-#define RED 11
-#define GREEN 10
-#define BLUE 9
+#define LIGHT A0 //조도센서
+#define L_RED 11
+#define L_GREEN 10
+#define L_BLUE 9
+#define PLANTS_LED 12
+
 
 void led_3color_on(int red, int green, int blue, int color);
 
@@ -10,13 +12,13 @@ static int light_warning_count;
 static void
 plants_led_on()
 {
-  
+  digitalWrite(PLANTS_LED, HIGH);
 }
 
 static void
 plants_led_off()
 {
-  
+  digitalWrite(PLANTS_LED, LOW);
 }
 
 static int
@@ -62,23 +64,30 @@ light_check()
   }
 
 
-  if(light_warning_count>=6)
+  if (light_warning_count>=6)
   {
     plants_led_on();
+    led_3color_on(L_RED, L_GREEN, L_BLUE, RED_COLOR);
+  }
+  else if (light_warning_count >= 3)
+  {
+    led_3color_on(L_RED, L_GREEN, L_BLUE, YELLOW_COLOR);
+  }
+  else
+  {
+    led_3color_on(L_RED, L_GREEN, L_BLUE, GREEN_COLOR);
   }
 
-  //led_3color_on(RED, GREEN, BLUE, RED_COLOR);
-  
   //수준 아래로 떨어지면 카운트 플러스, 일정카운트 이상 쌓이면 0.
-  //수준 이상이 되면 카운트 초기화. 방열패드 off
+  //수준 이상이 되면 카운트 초기화. 식물 성장용 LED off
 }
 
 void
 light_setup()
 {
-  Serial.begin(9600);
-  pinMode(RED, OUTPUT);
-  pinMode(GREEN, OUTPUT);
-  pinMode(BLUE, OUTPUT);
+  pinMode(PLANTS_LED, OUTPUT);
+  pinMode(L_RED, OUTPUT);
+  pinMode(L_GREEN, OUTPUT);
+  pinMode(L_BLUE, OUTPUT);
 }
 

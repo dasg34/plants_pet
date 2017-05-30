@@ -1,6 +1,6 @@
-
 #define TEMPERATURE A0
 #define HEATINGPAD 5
+
 
 #include <OneWire.h>
 #include <DallasTemperature.h>
@@ -10,6 +10,7 @@ DallasTemperature sensors(&oneWire);
 
 
 static int temperature_warning_count; 
+
 
 static void
 heating_pad_on()
@@ -70,5 +71,6 @@ temperature_setup()
 {
   sensors.begin();
   pinMode(HEATINGPAD, OUTPUT);
+
 }
 
