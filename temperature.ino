@@ -1,7 +1,17 @@
+
 #define TEMPERATURE A0
 #define HEATINGPAD1 5
 #define HEATINGPAD2 6
+
+#include <OneWire.h>
+#include <DallasTemperature.h>
+#define TEMPERATURE 2
+OneWire oneWire(TEMPERATURE);
+DallasTemperature sensors(&oneWire);
+
+
 static int temperature_warning_count; 
+
 
 static void
 heating_pad_on()
@@ -29,15 +39,19 @@ heating_pad_off()
 static int
 temperature_get()
 {
+  sensors.requestTemperatures();
+int temp = sensors.getTempCByIndex(0);
+  
+  Serial.println(temp);
   //온도 센서로부터 받은 값을 리턴.
-  return analogRead(TEMPERATURE);
+ return temp;
 }
 
 static int
 enough_temperature_is()
 {
   //온도 센서의 측정값이 일정수준 아래로 떨어지면 0, 아니면 1 리턴.
-  if (temperature_get() < 50)
+  if (temperature_get() < 30)
      return 0;
   else 
      return 1;
@@ -65,6 +79,7 @@ tempearture_check()
 void
 temperature_setup()
 {
+  sensors.begin();
   pinMode(HEATINGPAD1, OUTPUT);
   pinMode(HEATINGPAD2, OUTPUT);
 }
