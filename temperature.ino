@@ -1,7 +1,6 @@
 
 #define TEMPERATURE A0
-#define HEATINGPAD1 5
-#define HEATINGPAD2 6
+#define HEATINGPAD 5
 
 #include <OneWire.h>
 #include <DallasTemperature.h>
@@ -12,29 +11,19 @@ DallasTemperature sensors(&oneWire);
 
 static int temperature_warning_count; 
 
-
 static void
 heating_pad_on()
 {
   // 열선패드에 전원을 공급
-  digitalWrite(HEATINGPAD1,HIGH);
-  digitalWrite(HEATINGPAD2,HIGH);
-         
-        
-    }
- 
-
+  digitalWrite(HEATINGPAD,HIGH);        
+}
 
 static void
 heating_pad_off()
 {
   //열선패드에 전원 off
-  
-  digitalWrite(HEATINGPAD1,LOW);
-  digitalWrite(HEATINGPAD2,LOW);
-
- 
- }
+  digitalWrite(HEATINGPAD,LOW);
+}
 
 static int
 temperature_get()
@@ -80,7 +69,6 @@ void
 temperature_setup()
 {
   sensors.begin();
-  pinMode(HEATINGPAD1, OUTPUT);
-  pinMode(HEATINGPAD2, OUTPUT);
+  pinMode(HEATINGPAD, OUTPUT);
 }
 
