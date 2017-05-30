@@ -1,4 +1,8 @@
 #define TEMPERATURE A0
+#define T_RED 11
+#define T_GREEN 10
+#define T_BLUE 9
+
 #define HEATINGPAD 5
 
 
@@ -8,6 +12,7 @@
 OneWire oneWire(TEMPERATURE);
 DallasTemperature sensors(&oneWire);
 
+void led_3color_on(int red, int green, int blue, int color);
 
 static int temperature_warning_count; 
 
@@ -60,9 +65,18 @@ tempearture_check()
     heating_pad_off();
   }
 
-  if (temperature_warning_count > 3)
+  if (temperature_warning_count >= 6)
   {
      heating_pad_on();
+     led_3color_on(T_RED, T_GREEN, T_BLUE, RED_COLOR);
+  }
+  else if (temperature_warning_count >= 3)
+  {
+     led_3color_on(T_RED, T_GREEN, T_BLUE, YELLOW_COLOR);
+  }
+  else
+  {
+    led_3color_on(T_RED, T_GREEN, T_BLUE, GREEN_COLOR);
   }
 }
 
@@ -71,6 +85,9 @@ temperature_setup()
 {
   sensors.begin();
   pinMode(HEATINGPAD, OUTPUT);
+  pinMode(T_RED, OUTPUT);
+  pinMode(T_GREEN, OUTPUT);
+  pinMode(T_BLUE, OUTPUT);
 
 }
 
