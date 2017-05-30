@@ -6,6 +6,11 @@
 #define SOL 3136
 #define HDO 4186
 
+#define RED 11
+#define GREEN 10
+#define BLUE 9
+
+void led_3color_on(int red, int green, int blue, int color);
 static int moisture_warning_count; 
 
 static int
@@ -43,15 +48,29 @@ water_check()
      moisture_warning_count = 0;
 
   if (moisture_warning_count >= 10 )
-     dry_warn(HDO);
-  else if (moisture_warning_count >= 7 )
-     dry_warn(SOL);
-  else if (moisture_warning_count >= 5 )
-     dry_warn(MI);
-  else if (moisture_warning_count >= 3 )
-     dry_warn(LDO);
 
-  
+  {
+     if ((moisture_warning_count - 10) % 6 == 0)
+     { 
+      dry_warn(HDO);
+      led_3color_on(RED, GREEN, BLUE, RED_COLOR);
+     }
+  }
+  else if (moisture_warning_count >= 7 )
+  {
+     dry_warn(SOL);
+     led_3color_on(RED, GREEN, BLUE, YELLOW_COLOR);
+  }
+  else if (moisture_warning_count >= 5 )
+  {
+     dry_warn(MI);
+     led_3color_on(RED, GREEN, BLUE, YELLOW_COLOR);
+  }
+  else if (moisture_warning_count >= 3 )
+  {
+     dry_warn(LDO);
+     led_3color_on(RED, GREEN, BLUE, GREEN_COLOR);
+  }
   //비정상이면 카운트 플러스, 일정카운트 이상 쌓이면 0.
   //수준 이상이 되면 카운트 초기화.
 }
@@ -60,5 +79,9 @@ void
 water_setup()
 {
   pinMode(WATER, INPUT);
+  
+  pinMode(RED, OUTPUT);
+  pinMode(GREEN, OUTPUT);
+  pinMode(BLUE, OUTPUT);
 }
 
