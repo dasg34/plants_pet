@@ -1,14 +1,11 @@
-#define TEMPERATURE A0
-#define T_RED 11
-#define T_GREEN 10
-#define T_BLUE 9
-
-#define HEATINGPAD 5
-
-
 #include <OneWire.h>
 #include <DallasTemperature.h>
 #define TEMPERATURE 2
+#define T_RED 11
+#define T_GREEN 10
+#define T_BLUE 9
+#define HEATINGPAD 5
+
 OneWire oneWire(TEMPERATURE);
 DallasTemperature sensors(&oneWire);
 
@@ -35,11 +32,11 @@ static int
 temperature_get()
 {
   sensors.requestTemperatures();
-int temp = sensors.getTempCByIndex(0);
+  int temp = sensors.getTempCByIndex(0);
   
   Serial.println(temp);
   //온도 센서로부터 받은 값을 리턴.
- return temp;
+  return temp;
 }
 
 static int
@@ -88,6 +85,5 @@ temperature_setup()
   pinMode(T_RED, OUTPUT);
   pinMode(T_GREEN, OUTPUT);
   pinMode(T_BLUE, OUTPUT);
-
 }
 
