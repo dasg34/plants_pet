@@ -49,7 +49,7 @@ enough_temperature_is()
      return 1;
 }
 
-void
+int
 tempearture_check()
 {
   //수준 아래로 떨어지면 카운트 플러스, 일정카운트 이상 쌓이면 0.
@@ -66,14 +66,17 @@ tempearture_check()
   {
      heating_pad_on();
      led_3color_on(T_RED, T_GREEN, T_BLUE, RED_COLOR);
+     return STATE_BAD;
   }
   else if (temperature_warning_count >= 3)
   {
      led_3color_on(T_RED, T_GREEN, T_BLUE, YELLOW_COLOR);
+     return STATE_WARN;
   }
   else
   {
     led_3color_on(T_RED, T_GREEN, T_BLUE, GREEN_COLOR);
+    return STATE_GREAT;
   }
 }
 

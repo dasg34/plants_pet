@@ -1,3 +1,3 @@
 void temperature_setup();
 
-void temperature_warn();
+int tempearture_check();

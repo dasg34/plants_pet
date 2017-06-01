@@ -1,7 +1,3 @@
 void water_setup();
 
-void dry_warn();
-
-int enough_water_is();
-
-void  water_check();
+int  water_check();
