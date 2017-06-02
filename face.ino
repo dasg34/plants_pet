@@ -1,7 +1,7 @@
-#define EYEBROW 7
-#define EYE 8
-#define SMILE_MOUTH 13
-#define SAD_MOUTH 12
+#define EYEBROW 14
+#define EYE 15
+#define SMILE_MOUTH 16
+#define SAD_MOUTH 17
 
 static void
 all_face_unset()

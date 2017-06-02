@@ -1,10 +1,10 @@
 #include <OneWire.h>
 #include <DallasTemperature.h>
-#define TEMPERATURE 2
-#define T_RED 11
-#define T_GREEN 10
-#define T_BLUE 9
-#define HEATINGPAD 5
+#define TEMPERATURE 18
+#define T_RED 8
+#define T_GREEN 9
+#define T_BLUE 10
+#define HEATINGPAD 12
 
 OneWire oneWire(TEMPERATURE);
 DallasTemperature sensors(&oneWire);

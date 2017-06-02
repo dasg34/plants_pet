@@ -6,9 +6,9 @@
 #define SOL 3136
 #define HDO 4186
 
-#define W_RED 11
-#define W_GREEN 10
-#define W_BLUE 9
+#define W_RED 5
+#define W_GREEN 6
+#define W_BLUE 7
 
 void led_3color_on(int red, int green, int blue, int color);
 static int moisture_warning_count; 

@@ -1,8 +1,8 @@
-#define LIGHT A0 //조도센서
-#define L_RED 11
-#define L_GREEN 10
-#define L_BLUE 9
-#define PLANTS_LED 12
+#define LIGHT A1 //조도센서
+#define L_RED 2
+#define L_GREEN 3
+#define L_BLUE 4
+#define PLANTS_LED 11
 
 
 void led_3color_on(int red, int green, int blue, int color);
