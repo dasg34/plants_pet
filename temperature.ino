@@ -33,7 +33,7 @@ temperature_get()
 {
   sensors.requestTemperatures();
   int temp = sensors.getTempCByIndex(0);
-  
+  Serial.print("temp : ");
   Serial.println(temp);
   //온도 센서로부터 받은 값을 리턴.
   return temp;
@@ -43,7 +43,7 @@ static int
 enough_temperature_is()
 {
   //온도 센서의 측정값이 일정수준 아래로 떨어지면 0, 아니면 1 리턴.
-  if (temperature_get() < 30)
+  if (temperature_get() < 23)
      return 0;
   else 
      return 1;
@@ -78,6 +78,7 @@ tempearture_check()
     led_3color_on(T_RED, T_GREEN, T_BLUE, GREEN_COLOR);
     return STATE_GREAT;
   }
+  return STATE_GREAT;
 }
 
 void
