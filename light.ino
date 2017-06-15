@@ -25,6 +25,7 @@ static int
 light_get()
 {
   int val=analogRead(LIGHT);
+  Serial.print("light : ");
   Serial.println(val);
   return val;
   //조도 센서로부터 받은 값을 리턴.
@@ -33,7 +34,7 @@ light_get()
 static int
 enough_light_is()
 {
-  if(light_get()<600)
+  if(light_get() > 900)
   {
     return 0;
   }
@@ -74,7 +75,7 @@ light_check()
     led_3color_on(L_RED, L_GREEN, L_BLUE, GREEN_COLOR);
     return STATE_GREAT;
   }
-
+  return STATE_GREAT;
   //수준 아래로 떨어지면 카운트 플러스, 일정카운트 이상 쌓이면 0.
   //수준 이상이 되면 카운트 초기화. 식물 성장용 LED off
 }
