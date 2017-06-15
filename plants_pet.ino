@@ -10,9 +10,9 @@ enum led_color {
 };
 
 enum senser_state {
-  STATE_GREAT,
-  STATE_WARN,
-  STATE_BAD
+  STATE_GREAT = 1,
+  STATE_WARN = 2,
+  STATE_BAD = 3
 };
 
 void
@@ -27,7 +27,7 @@ led_3color_on(int red, int green, int blue, int color)
       break;
     case YELLOW_COLOR:
       analogWrite(red, 255);
-      analogWrite(green, 255);
+      analogWrite(green, 30);
       analogWrite(blue, 0);
       break;
     case GREEN_COLOR:
@@ -72,5 +72,6 @@ loop()
   }
   
   delay(2000);
+  Serial.println("\n");
   //이곳에 우리의 알고리즘이 들어갑니다.
 }
