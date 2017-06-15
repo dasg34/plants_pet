@@ -18,6 +18,8 @@ soil_moisture_get()
 {
   //수분 센서로부터 받은 값을 리턴.
   int out = analogRead(WATER);
+
+  Serial.print("water : ");
   Serial.println(out);
   return out;
 }
@@ -25,7 +27,7 @@ soil_moisture_get()
 static int
 enough_water_is()
 {
-  if (soil_moisture_get() < 200 )
+  if (soil_moisture_get() < 100 )
      return 0;
    else
      return 1;
@@ -55,6 +57,7 @@ water_check()
       led_3color_on(W_RED, W_GREEN, W_BLUE, RED_COLOR);
       return STATE_BAD;
      }
+     return STATE_BAD;
   }
   else if (moisture_warning_count >= 7 )
   {
@@ -74,6 +77,12 @@ water_check()
      led_3color_on(W_RED, W_GREEN, W_BLUE, GREEN_COLOR);
      return STATE_GREAT;
   }
+  else
+  {
+     led_3color_on(W_RED, W_GREEN, W_BLUE, GREEN_COLOR);
+     return STATE_GREAT;
+  }
+  return STATE_GREAT;
   //비정상이면 카운트 플러스, 일정카운트 이상 쌓이면 0.
   //수준 이상이 되면 카운트 초기화.
 }
