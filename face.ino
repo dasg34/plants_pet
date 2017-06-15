@@ -30,7 +30,7 @@ void
 sad_face_set()
 {
   all_face_unset();
-  digitalWrite(SAD_MOUTH, LOW);
+  digitalWrite(SAD_MOUTH, HIGH);
 }
 
 void
